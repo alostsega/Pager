@@ -18,10 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 		self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 		let viewController = ViewController()
-		var navController = UINavigationController(rootViewController: viewController)
+		let navController = UINavigationController(rootViewController: viewController)
 		navController.navigationBar.topItem?.title = "Pager"
-        navController.navigationBar.
-		navController.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Tab #7", style: .Bordered, target: viewController, action: Selector("changeTab"))
+		navController.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Tab #7", style: .Plain, target: viewController, action: Selector("changeTab"))
 		navController.navigationBar.hideBottomHairline()
 		
 		self.window!.rootViewController = navController
@@ -75,12 +74,12 @@ extension UINavigationBar {
 	
 	private func hairlineImageViewInNavigationBar(view: UIView) -> UIImageView? {
 		if view.isKindOfClass(UIImageView) && view.bounds.size.height <= 1.0 {
-			return (view as UIImageView)
+			return (view as! UIImageView)
 		}
 		
 		let subviews = (view.subviews as [UIView])
 		for subview: UIView in subviews {
-			if let imageView: UIImageView = hairlineImageViewInNavigationBar(subview)? {
+			if let imageView: UIImageView = hairlineImageViewInNavigationBar(subview) {
 				return imageView
 			}
 		}

@@ -32,25 +32,22 @@ class ViewController: PagerController, PagerDataSource {
         
         self.content = [String](count:10, repeatedValue: "")
         for index in 0...9 {
-            println("index: \(index)")
+            print("index: \(index)")
             self.content[index] = "Tab #\(index)"
         }
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("someSelector"), userInfo: nil, repeats: false)
+        //NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("someSelector"), userInfo: nil, repeats: false)
 	}
-    
-
     
     func someSelector() {
         self.content = [String](count:3, repeatedValue: "")
         for index in 0...2 {
-            println("index: \(index)")
+            print("index: \(index)")
             self.content[index] = "Tab #\(index)"
         }
         self.reloadData()
     }
 
-	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -60,16 +57,14 @@ class ViewController: PagerController, PagerDataSource {
 		self.selectTabAtIndex(7)
 	}
 	
-	
 	func numberOfTabs(pager: PagerController) -> Int {
 		return self.content.count;
 	}
 
-	
 	func tabViewForIndex(index: Int, pager:PagerController) -> UIView{
-		var title = self.content[index]
+		let title = self.content[index]
 		
-		var label:UILabel = UILabel()
+		let label:UILabel = UILabel()
 		label.text = title;
 		label.textColor = UIColor.whiteColor()
 		label.font = UIFont.boldSystemFontOfSize(16.0)
@@ -78,13 +73,12 @@ class ViewController: PagerController, PagerDataSource {
 		return label
 	}
 	
-	
 	func viewForTabAtIndex(index: Int, pager: PagerController) -> UIView {
-		var view:UIView = UIView(frame:self.view.frame)
+		let view:UIView = UIView(frame:self.view.frame)
 		view.frame = self.view.frame
 		view.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(CGFloat(Float(arc4random()) / Float(UINT32_MAX)))
 		
-		var label:UILabel = UILabel()
+		let label:UILabel = UILabel()
 		label.text  = self.content[index]
 		label.textColor = UIColor.blackColor()
 		label.font = UIFont.boldSystemFontOfSize(16.0)
